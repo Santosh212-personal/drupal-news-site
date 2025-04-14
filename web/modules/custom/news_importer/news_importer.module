@@ -1,0 +1,20 @@
+<?php
+
+use Drupal\news_importer\NewsImporter;
+
+/**
+ * Implements hook_cron().
+ */
+function news_importer_cron() {
+  \Drupal::logger('news_importer')->notice('Cron started.');
+
+  try {
+    $importer = \Drupal::service('news_importer.importer');
+    $result = $importer->fetchAndImport();
+    \Drupal::logger('news_importer')->notice($result);
+  } catch (\Exception $e) {
+    \Drupal::logger('news_importer')->error($e->getMessage());
+  }
+
+  \Drupal::logger('news_importer')->notice('Cron ended.');
+}

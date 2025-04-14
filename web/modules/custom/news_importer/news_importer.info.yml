@@ -1,0 +1,8 @@
+name: News Importer
+type: module
+description: Imports Indian news articles using NewsData.io API.
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - node
+  - taxonomy

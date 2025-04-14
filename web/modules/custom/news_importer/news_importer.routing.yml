@@ -1,0 +1,7 @@
+news_importer.import:
+  path: '/import-news'
+  defaults:
+    _controller: '\Drupal\news_importer\Controller\NewsImporterController::import'
+    _title: 'Import News Articles'
+  requirements:
+    _permission: 'access content'

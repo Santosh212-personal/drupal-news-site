@@ -1,0 +1,10 @@
+services:
+  news_importer.importer:
+    class: Drupal\news_importer\NewsImporter
+    arguments: ['@http_client', '@entity_type.manager']
+
+  news_importer.commands:
+    class: Drupal\news_importer\Commands\NewsImporterCommands
+    arguments: ['@news_importer.importer']
+    tags:
+      - { name: drush.command }
