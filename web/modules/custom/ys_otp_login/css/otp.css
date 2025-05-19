@@ -1,0 +1,131 @@
+/* Styling for form elements */
+/*#otp-login {
+    border-top: 2px solid #e38080;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}*/
+  
+#otp-login form {
+    display: flex;
+    flex-direction: column;
+}
+
+#otp-login #otp-submission-form{
+    border-top: 1px solid #ccc;
+   
+}
+
+#otp-form{
+    margin-top: 20px;
+}
+
+.action_fields{
+    margin: 10px 0;
+}
+
+#otp-login label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+#otp-login select,
+#otp-login #phone_number {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+#otp-login select:focus,
+#otp-login #phone_number:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+#otp-login input[type="button"] {
+    padding: 6px 12px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #31708f;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    margin: 0 auto;
+    letter-spacing: .4px;
+}
+
+#otp-login input[type="button"]:hover {
+    background-color: #286090;
+}
+
+.error {
+    color: rgb(217 79 79);
+    font-size: 16px;
+    background-color: bisque;
+    margin: 10px 0px;
+    padding: 15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    letter-spacing: 0.4px;
+    background-image:url('https://i.imgur.com/GnyDvKN.png');
+    display: none; /* Initially hide error message */
+}
+
+.success {
+    color: rgb(10, 158, 10);
+    font-size: 16px;
+    background-color: bisque;
+    margin: 10px 0px;
+    padding: 15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    letter-spacing: 0.4px;
+    background-image:url('https://i.imgur.com/Q9BGTuy.png');
+    display: none; /* Initially hide error message */
+}
+
+.form_title{
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Style for OTP input fields */
+#otp-input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border: 0;
+    margin-top: 10px;
+}
+  
+#otp-input-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+.otp-input {
+    width: 40px;
+    border: none;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+    margin: 0 10px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    pointer-events: all;
+}
+  
+  /* Optional: Focus style for OTP inputs */
+.otp-input:focus {
+    border-bottom: 3px solid orange;
+    outline: none;
+}
+  

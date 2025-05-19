@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ head_title }}</title>
+    {{ head }}
+    {{ styles }}
+  </head>
+  <body{{ body_attributes }}>
+    <header class="site-header py-3 header">
+        {% include '@mynews_theme/parts/login-form.html.twig' %}
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="{{ path('<front>') }}" title="Home" rel="home" class="site-logo">
+                <img src="{{ base_path ~ directory }}/images/logo.png" alt="My News Logo" class="img-fluid" />
+            </a>
+        </div>
+        <div class="lg-bg_wrapper">
+          <div class="bg-mode">
+            <button id="theme-toggle"></button>
+          </div>
+          {% if page.language_switcher %}
+              <div class="language-switcher-wrapper">
+              {{ page.language_switcher }}
+              </div>
+          {% endif %}
+        </div>
+    </header>
+
+    <main>
+      <div class="container">
+        {% if page.content %}
+          <div class="site-search-wrapper">
+            {{ page.content.mynews_theme_exposedformnews_searchpage_1 }}
+          </div>
+        {% endif %}
+
+        <section class="news-content">
+          {{ drupal_view('news_front_page', 'page_1') }}
+        </section>
+
+        <section class="ads">
+          <div class="ad-banner">
+            <!-- Ad code goes here -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; {{ "now"|date("Y") }} My News</p>
+      </div>
+    </footer>
+
+    {{ scripts }}
+  </body>
+</html>

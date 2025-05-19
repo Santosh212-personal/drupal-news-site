@@ -1,0 +1,7 @@
+news_translate.translate:
+  path: '/admin/news-translate/translate'
+  defaults:
+    _controller: '\Drupal\news_translate\Controller\NewsTranslateController::translateNewsContent'
+    _title: 'Translate News Content'
+  requirements:
+    _permission: 'administer site configuration'

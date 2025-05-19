@@ -1,0 +1,23 @@
+name: My News Theme
+type: theme
+description: 'Custom subtheme of Bootstrap Barrio for My News site.'
+core_version_requirement: ^10
+base theme: bootstrap_barrio
+
+libraries:
+  - mynews_theme/global-styling
+  - mynews_theme/font-awesome
+
+features:
+  - no-title
+  - no-breadcrumbs
+  - no-messages
+  - no-tabs
+
+regions:
+  language_switcher: Language Switcher
+  header: Header
+  content: Content
+  sidebar_first: Sidebar First
+  sidebar_second: Sidebar Second
+  footer: Footer

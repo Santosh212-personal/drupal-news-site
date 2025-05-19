@@ -1,0 +1,8 @@
+name: 'News Translate'
+type: module
+description: 'A custom module for translating news content into Hindi using LibreTranslate API.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - content_translation
+  - language

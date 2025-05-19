@@ -1,0 +1,12 @@
+services:
+  news_translate.libre_translate:
+    class: Drupal\news_translate\Service\LibreTranslateService
+    arguments: ['@http_client', '@cache.default']
+    public: true
+    
+  news_translate.controller.news_translate:
+    class: Drupal\news_translate\Controller\NewsTranslateController
+    arguments: ['@news_translate.libre_translate', '@current_user']
+    public: true
+    tags:
+      - { name: controller.service_arguments }

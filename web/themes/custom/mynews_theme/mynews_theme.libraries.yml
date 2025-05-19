@@ -1,0 +1,24 @@
+font-awesome:
+  remote: https://fontawesome.com
+  version: 6.4.0
+  license:
+    name: 'MIT'
+    url: 'https://fontawesome.com/license/free'
+    gpl-compatible: true
+  css:
+    theme:
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css': { type: external, minified: true }
+
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/otp.css: {}
+      css/style.css: {}
+  js:
+    js/otp.js: {}
+    js/common.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - mynews_theme/font-awesome

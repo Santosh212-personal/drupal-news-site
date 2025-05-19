@@ -1,0 +1,19 @@
+otp_login_js:
+  version: 1.x
+  css:
+    theme:
+        css/otp.css: {}
+  js:
+    js/otp_login.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+
+user_details_form:
+  version: 1.x
+  css:
+    theme:
+      css/user-details-form.css: {}
+  js:
+    js/user-details-form.js: {}

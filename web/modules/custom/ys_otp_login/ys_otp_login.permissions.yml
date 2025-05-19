@@ -1,0 +1,4 @@
+access user details:
+  title: 'Access user details page'
+  description: 'Permission to access the user details page after OTP verification'
+  restrict access: TRUE

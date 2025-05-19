@@ -1,0 +1,99 @@
+<div class="fab-container nodisplay">
+    <div class="fab" id="fab-signin">
+      <i class="fa fa-user"></i>
+    </div>      
+  </div>
+  <div class="lg_out nodisplay">
+    <p class="lg_out_text"><span><i class="fa fa-user"></i> Log Out</span></p>
+  </div>
+  
+  <div class="back">
+    <div class="overlay">
+      <div class="registration-form">
+        <header>
+          <h1>Sign In</h1>
+          <div class="login-buttons">
+            <div class="separator">
+              <span class="line"></span>
+              <span class="line"></span>
+            </div>
+            <button class="otp_login">OTP Login</button>
+            <div class="separator">
+              <span class="line"></span>
+              <span class="line"></span>
+            </div>
+            
+          </div>                   
+          <div id="error-message"></div>
+          <div id="success-message"></div>
+          <div class="otp-timer">
+            <span id="timer-display"></span>
+            <p class="resend-otp-button" style="display: none;">Resend OTP</p>
+          </div>
+        </header>
+        <form id="otp-form">
+          <p class="info">* Please Fill in all information</p>
+          <div class="input-section phone-section">
+            <div class="lbl_title">
+              <label for="phone_number">{{ 'Enter Your Mobile Number here'|t }}</label>
+            </div>
+            <select id="country_code" name="country_code">
+              <option value="+91" selected>India (+91)</option>
+              <option value="+1">USA (+1)</option>
+              <option value="+44">UK (+44)</option>
+            </select>
+            <input type="text" autocomplete="off" class="mobile_number" id="phone_number" placeholder="Mobile Number">
+            <div class="animated-button">
+              <span class="icon-paper-plane">
+                <i class="fa fa-phone"></i>
+              </span>
+              <span class="next-button mobile">
+                <i class="fa fa-arrow-up"></i>
+              </span>
+            </div>
+          </div>
+          
+          <div class="input-section otp-section folded">
+            <div class="lbl_title">
+              <label for="otp">{{ 'Enter the 6-digit OTP sent to your mobile'|t }}</label>
+            </div>
+            <input type="text" id="otp1" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp2" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp3" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp4" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp5" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp6" class="otp-input" maxlength="1" required>
+            <div class="animated-button">
+              <span class="icon-lock">
+                <i class="fa fa-lock"></i>
+              </span>
+              <span class="next-button otp">
+                <i class="fa fa-arrow-up"></i>
+              </span>
+            </div>
+          </div>
+          
+          <div class="input-section details-section folded">
+            <div class="lbl_title">
+              <label for="phone_number">{{ 'Enter Your Details'|t }}</label>
+            </div>
+            <input type="text" id="uname" class="details_section" placeholder="Name Here">
+            <input type="email" id="uemail" class="details_section" placeholder="Email Address Here">
+            <div class="animated-button">
+              <span class="icon-repeat-lock">
+                <i class="fa fa-info"></i>
+              </span>
+              <span class="next-button details">
+                <i class="fa fa-paper-plane"></i>
+              </span>
+            </div>
+          </div>
+          
+          <div class="account_success">
+            <p>ACCOUNT CREATED</p>
+          </div>
+        </form>
+      </div>
+      <button class="close-button">&times;</button>
+    </div>
+  </div>

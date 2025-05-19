@@ -1,0 +1,6 @@
+name: 'YS OTP Login'
+type: module
+description: 'Provides OTP functionality using Nexmo API.'
+core_version_requirement: ^10
+package: Custom
+version: 1.0

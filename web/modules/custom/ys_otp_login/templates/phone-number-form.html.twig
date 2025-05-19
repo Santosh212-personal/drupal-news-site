@@ -1,0 +1,46 @@
+{% if messages %}
+  {{ messages }}
+{% endif %}
+
+<h2 class="form_title">Login via OTP</h2>
+<div id="otp-login">
+  <form id="phone-number-form" method="post">
+    <div class="ccode_field">
+        <label for="country_code">{{ 'Country Code'|t }}</label>
+        <select id="country_code" name="country_code">
+          <option value="+91" selected>India (+91)</option>
+          <option value="+1">USA (+1)</option>
+          <option value="+44">UK (+44)</option>
+          <!-- Add more country options as needed -->
+        </select>
+    </div>
+    <div class="input_fields">
+      <label for="phone_number">{{ 'Phone Number'|t }}</label>
+      <input type="text" id="phone_number" name="phone_number" required>
+      <div id="phone-number-success-message"></div>
+      <div id="phone-number-error-message"></div>
+    </div>
+    <div class="action_fields">
+      <input type="button" id="send-otp" value="{{ 'Send OTP'|t }}">
+    </div>
+  </form>
+
+  <div id="otp-submission-form" style="display:none;">
+    <form id="otp-form" method="post">
+        <label for="otp">{{ 'Enter the 6-digit OTP sent to your mobile.'|t }}</label>
+        <div id="otp-input-container">      
+            <input type="text" id="otp1" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp2" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp3" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp4" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp5" class="otp-input" maxlength="1" required>
+            <input type="text" id="otp6" class="otp-input" maxlength="1" required>
+        </div>
+        <div id="otp-success-message"></div>
+        <div id="otp-error-message"></div>
+      <div class="action_fields">
+        <input type="button" id="submit-otp" value="{{ 'Vrify OTP and Login'|t }}">
+      </div>
+    </form>
+  </div>
+</div>

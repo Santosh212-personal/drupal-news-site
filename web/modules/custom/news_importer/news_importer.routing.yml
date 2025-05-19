@@ -5,3 +5,11 @@ news_importer.import:
     _title: 'Import News Articles'
   requirements:
     _permission: 'access content'
+
+news_importer.fix_images:
+  path: '/admin/news-importer/fix-images'
+  defaults:
+    _controller: '\Drupal\news_importer\Controller\FixImageController::fixImages'
+    _title: 'Fix Missing News Images'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function mynews_theme_preprocess_html(array &$variables) {
+
+    // Add a custom meta tag to the <head> section
+    $meta_tag = array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+        'name' => 'description',
+        'content' => 'MyNews Site',
+        ),
+    );
+    
+    // Attach the meta tag to the head
+    $variables['#attached']['html_head'][] = array(
+        $meta_tag,
+        'mynews_theme-meta-description', // Unique identifier for this meta tag
+    );
+  
+    $variables['attributes']['class'][] = 'theme-' . \Drupal::theme()->getActiveTheme()->getName();
+}
+
+/**
+ * Implements hook_preprocess_views_view_grid().
+ */
+function mynews_theme_preprocess_views_view_grid(&$variables) {
+    $view = $variables['view'];
+    if ($view->id() === 'news_front_page' && $view->current_display === 'page_1') {
+      $results = $view->result;
+      $row_index = 0; // Manual row index to align with results.
+      foreach ($variables['items'] as $row_key => &$row) {
+        foreach ($row['content'] as $col_key => &$column) {
+          $category = '';
+          // Get the result for the current row.
+          if (isset($results[$row_index])) {
+            $result = $results[$row_index];
+            // Check if field_news_category exists and is a taxonomy term.
+            if (!$result->_entity->get('field_news_category')->isEmpty()) {
+              $term = $result->_entity->get('field_news_category')->referencedEntities();
+              if (!empty($term)) {
+                $category_raw = $term[0]->getName();
+                $category = strtolower(preg_replace('/[^a-z0-9]+/', '-', $category_raw));
+              }
+            }
+            // Add category class to column.
+            if ($category) {
+              $column['attributes']['class'][] = 'category-' . $category;
+            }
+          }
+          $row_index++; // Increment row index for next result.
+        }
+      }
+    }
+}
+  

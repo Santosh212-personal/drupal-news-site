@@ -1,0 +1,16 @@
+<div class="user-details-form">
+  <h4 class="user_form_title">Please Enter the Following Details</h4>
+    <form id="user-details-form" method="post" action="{{ path('ys_otp_login.submit_user_details_form') }}">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="{{ current_user.name }}">
+      </div>
+      <div>
+        <label for="mail">Email</label>
+        <input type="email" id="mail" name="mail" value="{{ current_user.mail }}">
+      </div>
+      <button type="submit">Save</button>
+    </form>
+    <div id="form-message"></div>
+</div>
+  

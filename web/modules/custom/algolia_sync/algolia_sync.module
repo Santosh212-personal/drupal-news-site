@@ -1,0 +1,118 @@
+<?php
+
+use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
+use Algolia\AlgoliaSearch\SearchClient;
+use Drupal\file\Entity\File;
+
+/**
+ * Push news articles to Algolia.
+ */
+function algolia_sync_push_articles() {
+  // Debug DRUPAL_ROOT.
+  \Drupal::logger('algolia_sync')->info('DRUPAL_ROOT is: @path', ['@path' => DRUPAL_ROOT]);
+
+  // Define path to autoloader (vendor is in parent directory).
+  $autoloader = DRUPAL_ROOT . '/../vendor/autoload.php';
+
+  // Check if autoloader exists.
+  if (!file_exists($autoloader)) {
+    \Drupal::logger('algolia_sync')->error('Autoloader not found at @path. Please run "composer require algolia/algoliasearch-client-php" in the parent directory.', ['@path' => $autoloader]);
+    return;
+  }
+
+  // Include Algolia PHP client autoloader.
+  require_once $autoloader;
+
+  try {
+    // Initialize Algolia client with CA bundle.
+    $client = SearchClient::create(
+      'EPRXYU1JRC', // Your Algolia Application ID.
+      'b33d88dbe8dc97f356bc0054445bc563', // Your Algolia Admin API Key.
+      [
+        'http' => [
+          'curl' => [
+            CURLOPT_CAINFO => DRUPAL_ROOT . '/../php/extras/ssl/cacert.pem'
+          ]
+        ]
+      ]
+    );
+
+    // Initialize the Algolia index.
+    $index = $client->initIndex('news_articles');
+
+    // Fetch published news nodes.
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'news')
+      ->condition('status', 1)
+      ->accessCheck(FALSE)
+      ->execute();
+
+    $nodes = Node::loadMultiple($nids);
+    $records = [];
+
+    foreach ($nodes as $node) {
+      // Get body safely.
+      $body = $node->hasField('body') && !$node->get('body')->isEmpty() ? strip_tags($node->body->value) : '';
+
+      // Get news category (taxonomy term name).
+      $category = '';
+      if ($node->hasField('field_news_category') && !$node->get('field_news_category')->isEmpty()) {
+        $term_id = $node->get('field_news_category')->target_id;
+        if ($term_id) {
+          $term = Term::load($term_id);
+          $category = $term ? $term->getName() : '';
+        }
+      }
+
+      // Get news source (text or string).
+      $source = $node->hasField('field_news_source') && !$node->get('field_news_source')->isEmpty() ? $node->get('field_news_source')->value : '';
+
+      // Get image URL.
+      $image_url = '';
+      if ($node->hasField('field_news_main_image') && !$node->get('field_news_main_image')->isEmpty()) {
+        $file_id = $node->get('field_news_main_image')->target_id;
+        if ($file_id) {
+          $file = File::load($file_id);
+          if ($file) {
+            $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+          }
+        }
+      }
+
+      // Get published date.
+      $pub_date = '';
+      $pub_date = $node->hasField('field_published_on') && !$node->get('field_published_on')->isEmpty() ? $node->get('field_published_on')->value : '';
+
+      $records[] = [
+        'objectID' => $node->id(),
+        'title' => $node->getTitle(),
+        'body' => $body,
+        'category' => $category,
+        'source' => $source,
+        'image_url' => $image_url,
+        'created' => $pub_date,
+      ];
+    }
+
+    if ($records) {
+      $index->saveObjects($records);
+      \Drupal::logger('algolia_sync')->info('Pushed @count articles to Algolia.', ['@count' => count($records)]);
+    }
+    else {
+      \Drupal::logger('algolia_sync')->info('No articles to sync.');
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('algolia_sync')->error('Algolia sync failed: @error', ['@error' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+/*function algolia_sync_cron() {
+  // Run the Algolia sync during cron.
+  \Drupal::logger('algolia_sync')->info('Running Algolia sync via cron.');
+  algolia_sync_push_articles();
+}*/

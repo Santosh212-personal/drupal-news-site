@@ -15,22 +15,35 @@
         }
     ],
     "require": {
+        "algolia/algoliasearch-client-php": "^3.0",
         "composer/installers": "^2.0",
         "drupal/admin_toolbar": "^3.5",
+        "drupal/bootstrap_barrio": "^5.5",
         "drupal/core-composer-scaffold": "^10.1",
         "drupal/core-project-message": "^10.1",
         "drupal/core-recommended": "^10.1",
+        "drupal/facets": "^3.0",
+        "drupal/paragraphs": "^1.17",
+        "drupal/pathauto": "^1.13",
+        "drupal/search_api": "^1.35",
+        "drupal/search_api_algolia": "3.1",
+        "drupal/search_api_autocomplete": "^1.9",
+        "drupal/search_api_db": "^1.35",
+        "drupal/twig_tweak": "^3.3",
+        "drupal/views_infinite_scroll": "^2.0",
         "drush/drush": "^12.5"
     },
     "autoload": {
         "psr-4": {
-            "Drupal\\news_importer\\": "web/modules/custom/news_importer/src/"
+            "Drupal\\news_importer\\": "web/modules/custom/news_importer/src/",
+            "Drupal\\news_translate\\": "web/modules/custom/news_translate/src/",
+            "Drupal\\news_hello\\": "web/modules/custom/news_hello/src/"
         }
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {

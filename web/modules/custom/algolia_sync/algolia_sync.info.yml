@@ -1,0 +1,7 @@
+name: 'Algolia Sync'
+type: module
+description: 'Pushes Drupal articles to Algolia index.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:node

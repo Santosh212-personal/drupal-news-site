@@ -1,0 +1,48 @@
+ys_otp_login.phone_form:
+  path: '/otp-login/phone'
+  defaults:
+    _title: 'OTP Login - Phone'
+    _controller: '\Drupal\ys_otp_login\Controller\OtpLoginController::phoneNumberPage'
+  requirements:
+    _permission: 'access content'
+
+ys_otp_login.send_otp:
+  path: '/otp-login/send-otp'
+  defaults:
+    _controller: '\Drupal\ys_otp_login\Controller\OtpLoginController::sendOtp'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+
+ys_otp_login.varify_otp:
+  path: '/otp-login/verify-otp'
+  defaults:
+    _controller: '\Drupal\ys_otp_login\Controller\OtpLoginController::verifyOtp'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+
+ys_otp_login.user_details_form:
+  path: '/user-details'
+  defaults:
+    _controller: '\Drupal\ys_otp_login\Controller\UserDetailsController::userDetailsForm'
+    _title: 'User Details'
+  requirements:
+    _permission: 'access content'
+
+ys_otp_login.submit_user_details_form:
+  path: '/user-details/submit'
+  defaults:
+    _controller: '\Drupal\ys_otp_login\Controller\UserDetailsController::submitUserDetailsForm'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+
+ys_otp_login.logout:
+  path: 'otp/logout'
+  defaults:
+    _controller: '\Drupal\ys_otp_login\Controller\OtpLoginController::logoutAndDeleteUser'
+    _title: 'Logout and Delete User'
+  methods: [POST]
+  requirements:
+    _permission: 'access content' 

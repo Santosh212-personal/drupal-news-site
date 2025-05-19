@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function ys_otp_login_theme($existing, $type, $theme, $path) {
+  return [
+    'phone_number_form' => [
+      'variables' => [],
+      'template' => 'phone-number-form',
+    ],
+    'user_details_form' => [
+      'variables' => [],
+      'template' => 'user-details-form',
+    ],
+  ];
+}
